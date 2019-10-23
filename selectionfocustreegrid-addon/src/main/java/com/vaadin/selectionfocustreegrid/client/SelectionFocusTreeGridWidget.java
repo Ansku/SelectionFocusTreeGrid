@@ -22,14 +22,11 @@ public class SelectionFocusTreeGridWidget extends TreeGrid {
         @SuppressWarnings("rawtypes")
         @Override
         public void update(Row row, Iterable cellsToUpdate) {
+            super.update(row, cellsToUpdate);
             String rowSelectedStyleName = getStylePrimaryName()
                     + "-row-selected";
-            boolean selectedPreviously = row.getElement()
-                    .hasClassName(rowSelectedStyleName);
-            super.update(row, cellsToUpdate);
             String rowFocusedStyleName = getStylePrimaryName() + "-row-focused";
-            if (!selectedPreviously
-                    && row.getElement().hasClassName(rowSelectedStyleName)
+            if (row.getElement().hasClassName(rowSelectedStyleName)
                     && !row.getElement().hasClassName(rowFocusedStyleName)) {
                 focusCell(row.getRow(),
                         getFocusedColumnRange(cellFocusHandler).getStart());
